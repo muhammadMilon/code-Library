@@ -30,8 +30,6 @@ int main()
     {
         ll base,power;
         cin>>base>>power;
-
-
         cout<<modularExponentiation(base,power,mod)<<endl;
     }
 	return 0;
