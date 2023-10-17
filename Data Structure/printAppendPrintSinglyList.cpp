@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 struct node
@@ -6,6 +6,7 @@ struct node
     int data;
     struct node *next;
 };
+// Function to print the List
 
 void printList(struct node *head)
 {
@@ -25,6 +26,34 @@ void printList(struct node *head)
     }
 }
 
+// Function to append a new element at a certain position
+void appendAtPosition(struct node *&head, int data, int position)
+{
+    struct node *newNode = new node;
+    newNode->data = data;
+    newNode->next = nullptr;
+
+    if (position == 0)
+    {
+        newNode->next = head;
+        head = newNode;
+    }
+    else
+    {
+        struct node *current = head;
+        int currentPosition = 0;
+
+        while (currentPosition < position - 1 && current->next != nullptr)
+        {
+            current = current->next;
+            currentPosition++;
+        }
+
+        newNode->next = current->next;
+        current->next = newNode;
+    }
+}
+
 int main()
 {
     struct node *head = nullptr;
@@ -33,7 +62,7 @@ int main()
     int numElements;
     cout << "Enter the number of elements: ";
     cin >> numElements;
-    cout<<"Enter the Elements: ";
+    cout << "Enter the Elements: ";
 
     for (int i = 0; i < numElements; i++)
     {
@@ -52,7 +81,16 @@ int main()
             current = newNode;
         }
     }
-    cout<<"The List is: ";
+
+    cout << "The List is: ";
+    printList(head);
+
+    int data, position;
+    cout << "Enter the data and position to append: ";
+    cin >> data >> position;
+    appendAtPosition(head, data, position);
+
+    cout << "Updated List: ";
     printList(head);
 
     return 0;
