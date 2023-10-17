@@ -27,7 +27,7 @@ void printList(struct node *head)
 }
 
 // Function to delete an element at a certain position
-void deleteAtPosition(struct node *&head, int position)
+void deleteAtPosition(struct node *head, int position)
 {
     if (head == nullptr)
     {
