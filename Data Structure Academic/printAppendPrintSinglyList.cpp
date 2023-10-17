@@ -27,7 +27,7 @@ void printList(struct node *head)
 }
 
 // Function to append a new element at a certain position
-void appendAtPosition(struct node *&head, int data, int position)
+void appendAtPosition(struct node *head, int data, int position)
 {
     struct node *newNode = new node;
     newNode->data = data;
