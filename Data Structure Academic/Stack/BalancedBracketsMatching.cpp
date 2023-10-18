@@ -4,36 +4,45 @@ using namespace std;
 
 bool areBracketsBalanced(string expression)
 {
-    stack<char> bracketStack;
+    stack<char> st;
 
     for (char ch : expression)
     {
         if (ch == '(' || ch == '[' || ch == '{')
         {
-            bracketStack.push(ch);
+            st.push(ch);
         }
-        else if (ch == ')' || ch == ']' || ch == '}')
+        else if (ch == ')')
         {
-            if (bracketStack.empty())
+            if (st.empty() || st.top() != '(')
             {
-                return false; // Unmatched closing bracket
+                return false;
             }
-
-            char top = bracketStack.top();
-            bracketStack.pop();
-            if ((ch == ')' && top != '(') ||
-                (ch == ']' && top != '[') ||
-                (ch == '}' && top != '{'))
+            st.pop();
+        }
+        else if (ch == ']')
+        {
+            if (st.empty() || st.top() != '[')
             {
-                return false; // Mismatched closing bracket
+                return false;
             }
+            st.pop();
+        }
+        else if (ch == '}')
+        {
+            if (st.empty() || st.top() != '{')
+            {
+                return false;
+            }
+            st.pop();
         }
     }
 
-    return bracketStack.empty();  // Stack should be empty if all brackets are balanced
+    return st.empty(); // Stack should be empty if all brackets are balanced
 }
 
-int main() {
+int main() 
+{
     string expression;
     cout << "Enter an expression with brackets: ";
     cin >> expression;
