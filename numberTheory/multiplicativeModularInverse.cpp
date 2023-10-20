@@ -6,7 +6,7 @@ using namespace std;
 const int sz = 1e5 + 5, mod = 1e9 + 7;
 
 // Function to calculate the greatest common divisor (GCD) using the extended Euclidean algorithm
-int gcdExtended(int a, int m, int &x, int &y) //& In the function int gcdExtended(int a, int m, int &x, int &y), the & symbol is used to pass x and y by reference, rather than by value
+int gcdExtended(int a, int m, int &x, int &y) //the & symbol is used to pass x and y by reference, rather than by value
 {
     if (a == 0)
     {
