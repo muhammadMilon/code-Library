@@ -28,3 +28,5 @@ int main()
         printf("X= %d Y=%d D=%d\n",x,y,d);
     }
 }
+
+// https://onlinejudge.org/external/101/10104.pdf
