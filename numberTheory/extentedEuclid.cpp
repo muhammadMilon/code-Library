@@ -29,4 +29,4 @@ int main()
     }
 }
 
-// https://onlinejudge.org/external/101/10104.pdf
+//  https://onlinejudge.org/external/101/10104.pdf
