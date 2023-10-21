@@ -1,58 +1,52 @@
-#include<bits/stdc++.h>
-#define ll long long int
-
+#include <bits/stdc++.h>
 using namespace std;
 
-const int sz = 1e5 + 5, mod = 1e9 + 7;
+int x, y, d;
 
-// Function to calculate the greatest common divisor (GCD) using the extended Euclidean algorithm
-int gcdExtended(int a, int m, int &x, int &y) //the & symbol is used to pass x and y by reference, rather than by value
+void extendedEuclid(int a, int b)
 {
-    if (a == 0)
+    if (b == 0)
     {
-        x = 0;
-        y = 1;
-        return m;
+        x = 1;
+        y = 0;
+        d = a;
+        return;
     }
-
-    int x1, y1;
-    int gcd = gcdExtended(m % a, a, x1, y1);
-
-    x = y1 - (m / a) * x1;
-    y = x1;
-
-    return gcd;
+    extendedEuclid(b, a % b);
+    int x1 = y;
+    int y1 = x - (a / b) * y;
+    x = x1;
+    y = y1;
 }
 
-// Function to find the multiplicative modulo inverse of 'a' modulo 'm'
 int modInverse(int a, int m)
 {
-    int x, y;
-    int gcd = gcdExtended(a, m, x, y);
-
-    if (gcd != 1)
+    extendedEuclid(a, m);
+    if (d != 1)
     {
-        // Modular inverse does not exist if a and m are not coprime
-        cout << "Multiplicative Modulo Inverse does not exist." << endl;
-        return -1; // Invalid
+        return -1;
     }
-    else
-    {
-        // Ensure the result is positive
-        return (x % m + m) % m;
-    }
+    x = (x % m + m) % m;
+    return x;
 }
 
 int main()
 {
-    int a, m;
-    cout << "Enter the values for 'a' and 'm' to find the multiplicative modulo inverse (a^-1 mod m): ";
-    cin >> a >> m;
-
-    int inverse = modInverse(a, m);
-    if (inverse != -1)
+    int t;
+    cin >> t;
+    while (t--)
     {
-        cout << "The multiplicative modulo inverse of " << a << " modulo " << m << " is: " << inverse << endl;
+        int a, m;
+        cin >> a >> m;
+        int inverse = modInverse(a, m);
+        if (inverse == -1)
+        {
+            cout << "Not Exist" << endl;
+        }
+        else
+        {
+            cout << inverse << endl;
+        }
     }
 
     return 0;
