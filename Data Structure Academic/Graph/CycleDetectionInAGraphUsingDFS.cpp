@@ -40,10 +40,10 @@ int main()
     bool ans=dfs(1,-1);
     if(ans)
     {
-        cout<<"The Graph is Cycled."<<endl;
+        cout<<"Cycle Found in this Graph"<<endl;
     }
     else
     {
-        cout<<"The Graph is not Cycled."<<endl;
+        cout<<"Cycle is not Found in this Graph"<<endl;
     }
 }
