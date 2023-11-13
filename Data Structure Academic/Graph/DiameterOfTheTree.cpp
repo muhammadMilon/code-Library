@@ -28,12 +28,7 @@ int main()
 {
     int n,e,x,y;
     cin>>n>>e;
-    for (int i = 1; i <= n; i++)
-    {
-        vis[i] = 0;
-        v[i].clear();
-    }
-    mx = INT_MIN;
+
     while(e--)
     {
         cin>>x>>y;
@@ -41,11 +36,13 @@ int main()
         v[y].push_back(x);
     }
     dfs(1,0);
-    mx=-1;
-    for(int i=1;i<=n;i++)
+
+    for (int i = 1; i <= n; i++)
     {
-        vis[i]=0;
+        vis[i] = 0;
     }
+    mx = INT_MIN;
+
     dfs(nod,0);
     cout<<mx<<endl;
 
