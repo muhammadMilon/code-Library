@@ -45,6 +45,28 @@ int query(int node,int b,int e,int i,int j)
     return leftSum+rightSum;
 }
 
+void update(int node,int b,int e,int i,int newNode)
+{
+    if(i>e || i<b)
+    {
+        return;
+    }
+    if(b>=i && e<=i)
+    {
+        tree[node]=newNode;
+        return;
+    }
+
+    int left=node*2;
+    int right=(node*2)+1;
+    int mid=(b+e)/2;
+
+    update(left,b,mid,i,newNode);
+    update(right,mid+1,e,i,newNode);
+
+    tree[node]=tree[left]+tree[right];
+}
+
 int main()
 {
     int n;
@@ -57,8 +79,19 @@ int main()
 
     init(1,0,n-1);
     int sum = query(1,0,n-1,0,n-1);
+    cout<<"Sum of this array: "<<sum<<endl;
 
-    cout<< sum <<endl;
+    int index,value;
+    cout<<"Index: ";
+    cin>>index;
+    cout<<"Enter the value: ";
+    cin>>value;
+    update(1,0,n-1,index,value);
 
+    cout<<"Updated array: ";
+    for(int i=0;i<n;i++)
+    {
+        cout<<query(1,0,n-1,i,i)<<" ";
+    }
     return 0;
 }
