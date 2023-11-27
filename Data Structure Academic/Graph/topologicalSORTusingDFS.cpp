@@ -1,9 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-vector<int> v[10000];
+vector<int> v[100000];
 vector<int> res;
-int vis[1003];
+int vis[100003];
 
 void dfs(int node)
 {
