@@ -5,8 +5,8 @@ int main()
 {
     int a[]={5,4,6,2,7};
     int n=sizeof(a)/sizeof(a[0]);
-    int m[5][5]={0};
-    int s[5][5]={0};
+    int m[n][n]={0};
+    int s[n][n]={0};
     int j,mini,q;
 
     for(int d=1;d<n-1;d++)
@@ -30,3 +30,14 @@ int main()
     }
     cout<<m[1][n-1]<<endl;
 }
+
+
+/*
+A={5,4}
+B={4,6}
+C={6,2}
+D={2,7}
+
+Resource:   https://www.youtube.com/watch?v=eKkXU3uu2zk
+
+*/
