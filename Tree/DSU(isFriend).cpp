@@ -23,7 +23,7 @@ int Find(int u)
     {
         return u;
     }
-    return Find(parent[u]);
+    return parent[u]=Find(parent[u]);
 }
 
 void Union(int u,int v)
