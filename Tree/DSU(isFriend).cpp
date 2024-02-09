@@ -28,12 +28,12 @@ int Find(int u)
 
 void Union(int u,int v)
 {
-    int p=Find(u);
-    int q=Find(v);
+    u=Find(u);
+    v=Find(v);
 
-    if(p!=q)
+    if(u!=v)
     {
-        parent[q]=p;
+        parent[v]=u;
     }
 }
 
