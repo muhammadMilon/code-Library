@@ -43,7 +43,7 @@ struct Edge
 int MST(int n, vector<Edge>& edges)
 {
     int cost = 0;
-    vector<Edge> mstEdges;
+    //vector<Edge> mstEdges;
 
     parent.resize(n);
     Rank.resize(n);
@@ -57,7 +57,7 @@ int MST(int n, vector<Edge>& edges)
         if (Find(e.u) != Find(e.v))
         {
             cost += e.weight;
-            mstEdges.push_back(e);
+           // mstEdges.push_back(e);
             Union(e.u, e.v);
         }
     }
