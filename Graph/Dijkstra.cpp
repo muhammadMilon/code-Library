@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 #define mx 1005
-#define inf 9999999999999
+#define inf 1000000000
 
 using namespace std;
 
@@ -16,7 +16,7 @@ int dis[mx];
 
 void reset()
 {
-    for(int i=0; i<inf; i++)
+    for(int i=0; i<mx; i++)
     {
         G[i].clear();
         vis[i]=0;
@@ -82,12 +82,13 @@ int main()
         G[u].push_back({v,w});
     }
     int source;
+    cout<<"Enter source: ";
     cin>>source;
     Dijkstra(source);
 
     for(int i=1;i<=m;i++)
     {
-        cout<<"Node :"<<i<<"Distance :";
+        cout<<"Node :"<<i<<" Distance :";
         if(dis[i]==inf)
         {
             cout<<"INF"<<endl;
