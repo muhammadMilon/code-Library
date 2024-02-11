@@ -28,13 +28,9 @@ class cmp
 {
 public:
 
-    bool operator()(node &A,node &B)
+    bool operator()(node &A, node &B)
     {
-        if(A.cost>B.cost)
-        {
-            return true;
-        }
-        return false;
+        return A.cost > B.cost;
     }
 };
 
