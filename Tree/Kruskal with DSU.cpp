@@ -40,7 +40,7 @@ struct Edge
     }
 };
 
-int MST(int n, vector<Edge>& edges)
+int kruskal(int n, vector<Edge>& edges)
 {
     int cost = 0;
     //vector<Edge> mstEdges;
