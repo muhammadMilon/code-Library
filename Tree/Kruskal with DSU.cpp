@@ -2,6 +2,16 @@
 
 using namespace std;
 
+struct edge
+{
+    int u, v, w;
+    edge(int _u, int _v, int _w) : u(_u), v(_v), w(_w) {}
+    bool operator<(const edge& other) const
+    {
+        return w < other.w;
+    }
+};
+
 vector<int> parent, Rank;
 
 void makeSet(int u)
@@ -24,40 +34,28 @@ void Union(int u, int v)
     if (u != v)
     {
         if (Rank[u] < Rank[v])
-            swap(u,v);
+            swap(u, v);
         parent[v] = u;
         if (Rank[u] == Rank[v])
             Rank[u]++;
     }
 }
 
-struct Edge
-{
-    int u, v, weight;
-    bool operator<(Edge const& other)
-    {
-        return weight < other.weight;
-    }
-};
-
-int kruskal(int n, vector<Edge>& edges)
+int mst(int n, vector<edge>& edges)
 {
     int cost = 0;
-    //vector<Edge> mstEdges;
-
-    parent.resize(n);
-    Rank.resize(n);
-    for (int i = 0; i < n; i++)
+    parent.resize(n + 1);
+    Rank.resize(n + 1);
+    for (int i = 1; i <= n; i++)
         makeSet(i);
 
     sort(edges.begin(), edges.end());
 
-    for (Edge e : edges)
+    for (edge e : edges)
     {
         if (Find(e.u) != Find(e.v))
         {
-            cost += e.weight;
-           // mstEdges.push_back(e);
+            cost += e.w;
             Union(e.u, e.v);
         }
     }
@@ -66,17 +64,20 @@ int kruskal(int n, vector<Edge>& edges)
 
 int main()
 {
-    int n, m;
+
+    int  n, m;
     cin >> n >> m;
 
-    vector<Edge> edges(m);
+    vector<edge> edges;
     for (int i = 0; i < m; i++)
     {
-        cin >> edges[i].u >> edges[i].v >> edges[i].weight;
+        int a, b, c;
+        cin >> a >> b >> c;
+        edges.push_back(edge(a, b, c));
     }
 
-    int totalWeight =  kruskal(n, edges);
-    cout << totalWeight << endl;
+    int totalWeight = mst(n, edges);
+    cout << totalWeight<< endl;
 
     return 0;
 }
