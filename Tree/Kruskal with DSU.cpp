@@ -75,7 +75,7 @@ int main()
         cin >> edges[i].u >> edges[i].v >> edges[i].weight;
     }
 
-    int totalWeight = MST(n, edges);
+    int totalWeight =  kruskal(n, edges);
     cout << totalWeight << endl;
 
     return 0;
