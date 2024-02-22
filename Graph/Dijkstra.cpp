@@ -1,66 +1,37 @@
-#include<bits/stdc++.h>
-#define mx 1005
-#define inf 1000000000
-
+#include <bits/stdc++.h>
 using namespace std;
 
-struct node
+typedef pair<int,int> ii;
+
+const int MAXN = 1e5 + 3;
+const int INF = INT_MAX;
+
+vector<vector<ii>> adjList;
+int n, dist[MAXN], par[MAXN];
+
+void dijkstra(int s)
 {
-    int val;
-    int cost;
-};
+    priority_queue<ii, vector<ii>, greater<ii>> pq;
+    fill(dist, dist+n+1, INF);
 
-vector<node>G[mx];
-bool vis[mx];
-int dis[mx];
-
-void reset()
-{
-    for(int i=0; i<mx; i++)
-    {
-        G[i].clear();
-        vis[i]=0;
-        dis[i]=inf;
-    }
-}
-
-class cmp
-{
-public:
-
-    bool operator()(node &A, node &B)
-    {
-        return A.cost > B.cost;
-    }
-};
-
-void dijkstra(int source)
-{
-    priority_queue<node,vector<node>,cmp>pq;
-    pq.push({source,0});
+    pq.push(ii(0, s));
+    dist[s] = 0;
+    par[s] = -1;
 
     while(!pq.empty())
     {
-        node cur=pq.top();
+        int u = pq.top().second;
         pq.pop();
 
-        int val=cur.val;
-        int cost=cur.cost;
-
-        if(vis[val]==1)
-            continue;
-
-        dis[val]=cost;
-        vis[val]=1;
-
-        for(int i=0; i<G[val].size(); i++)
+        for(auto &pr : adjList[u])
         {
-            int nxt=G[val][i].val;
-            int nxtCost=G[val][i].cost;
+            int v = pr.first, w = pr.second;
 
-            if(vis[nxt]==0)
+            if(dist[u] + w < dist[v])
             {
-                pq.push({nxt,cost+nxtCost});
+                dist[v] = dist[u] + w;
+                pq.push(ii(dist[v], v));
+                par[v] = u;
             }
         }
     }
@@ -68,31 +39,21 @@ void dijkstra(int source)
 
 int main()
 {
-    reset();
-    int n,m;
-    cin>>n>>m;
-    for(int i=1; i<=m; i++)
-    {
-        int u,v,w;
-        cin>>u>>v>>w;
-        G[u].push_back({v,w});
-    }
-    int source;
-    cout<<"Enter source: ";
-    cin>>source;
-    dijkstra(source);
+    int m;
+    scanf("%d %d", &n, &m);
 
-    for(int i=1;i<=m;i++)
+    adjList.resize(n+3);
+
+    int u, v, w;
+
+    while(m--)
     {
-        cout<<"Node :"<<i<<" Distance :";
-        if(dis[i]==inf)
-        {
-            cout<<"INF"<<endl;
-        }
-        else
-        {
-            cout<<dis[i]<<endl;
-        }
+        scanf("%d %d %d", &u, &v, &w);
+        adjList[u].push_back(ii(v, w));
+        adjList[v].push_back(ii(u, w));
     }
+
+    dijkstra(1);
+
     return 0;
 }
