@@ -34,7 +34,7 @@ public:
     }
 };
 
-void Dijkstra(int source)
+void dijkstra(int source)
 {
     priority_queue<node,vector<node>,cmp>pq;
     pq.push({source,0});
@@ -80,7 +80,7 @@ int main()
     int source;
     cout<<"Enter source: ";
     cin>>source;
-    Dijkstra(source);
+    dijkstra(source);
 
     for(int i=1;i<=m;i++)
     {
