@@ -1,30 +1,30 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-bool visited[5][5];
+bool vis[5][5];
 
 int dx[] = {-1, 1,  0, 0, -1, -1,  1, 1};
 int dy[] = {0,  0, -1, 1, -1,  1, -1, 1};
 
 bool valid(int x, int y)
 {
-    return (x >= 0 && x < 5 && y >= 0 && y < 5 && !visited[x][y]);
+    return (x >= 0 && x < 5 && y >= 0 && y < 5 && !vis[x][y]);
 }
 
 void dfs(int x, int y)
 {
-    if (visited[x][y]) return;
+    if (vis[x][y]) return;
     
-    visited[x][y] = 1;
+    vis[x][y] = 1;
 
     for (int i = 0; i < 8; i++)
     {
-        int next_x = x + dx[i];
-        int next_y = y + dy[i];
+        int nx = x + dx[i];
+        int ny = y + dy[i];
 
-        if (valid(next_x, next_y))
+        if (valid(nx, ny))
         {
-            dfs(next_x, next_y);
+            dfs(nx, ny);
         }
     }
 }
@@ -39,7 +39,7 @@ int main()
     {
         for (int j = 0; j < 5; j++)
         {
-            cout << visited[i][j] << " ";
+            cout << vis[i][j] << " ";
         }
         cout << endl;
     }
