@@ -30,8 +30,6 @@ void dfs(int x, int y)
 }
 
 
-
-
 int main()
 {
     dfs(2, 2);
