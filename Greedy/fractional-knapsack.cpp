@@ -34,7 +34,7 @@ int f_knapsack(vector<node>&v,int w)
 int main()
 {
     int n,w;
-    cin>>n>>w;
+    cin>>n>>w; //number of item && total capecity of knapsack
     vector<node>v(n);
     for(int i=0;i<n;i++)
     {
