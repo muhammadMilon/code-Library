@@ -17,7 +17,7 @@ int main()
             mini=INT_MAX;
             for(int k=i;k<=j-1;k++)
             {
-                q=m[i][k]+m[k+1][j]+(a[i-1]*a[k]*a[j]);
+                q=m[i][k]+m[k+1][j]+(a[i-1]*a[j]*a[k]);
 
                 if(q<mini)
                 {
