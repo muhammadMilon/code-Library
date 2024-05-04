@@ -11,9 +11,9 @@ int lis(vector<int>& nums)
     {
         for (int j = 0; j < i; j++)
         {
-            if (nums[i] > nums[j] && dp[i] < dp[j] + 1)
+            if(nums[j] < nums[i])
             {
-                dp[i] = dp[j] + 1;
+               dp[i] = max(dp[i], dp[j] + 1);
             }
         }
     }
@@ -32,7 +32,7 @@ int lis(vector<int>& nums)
 
 int main()
 {
-    vector<int> nums = {10, 22, 9, 33, 21, 50, 41, 60, 80};
+    vector<int> nums = {3,9,1,5,6,7,4};
     cout << "Length of LIS: " << lis(nums) << endl;
     return 0;
 }
