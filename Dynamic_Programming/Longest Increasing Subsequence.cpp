@@ -21,10 +21,7 @@ int lis(vector<int>& nums)
     int max_length = 0;
     for (int i = 0; i < n; i++)
     {
-        if (dp[i] > max_length)
-        {
-            max_length = dp[i];
-        }
+        max_length=max(max_length,dp[i]);
     }
 
     return max_length;
