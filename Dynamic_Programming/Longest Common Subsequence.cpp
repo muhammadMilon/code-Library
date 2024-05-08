@@ -35,16 +35,13 @@ int main()
             i++;
             j++;
         }
+        else if(dp[i][j]== dp[i+1][j])
+        {
+                i++;
+        }
         else
         {
-            if(dp[i][j]== dp[i+1][j])
-            {
-                i++;
-            }
-            else
-            {
                 j++;
-            }
         }
     }
     cout<<endl<<"The length of LCS: "<<dp[0][0]<<endl;
